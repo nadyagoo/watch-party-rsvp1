@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SA vs MEX — Watch Party RSVP</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #1A1A0F; --surface: #252516; --surface2: #2E2E1A;
+    --red: #E8412A; --gold: #F5C842; --text: #F2EDE4;
+    --muted: #8A8A6A; --border: #3A3A22;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; padding: 0 0 60px; }
+
+  .scoreboard { background: var(--surface); border-bottom: 2px solid var(--border); padding: 40px 24px 32px; text-align: center; position: relative; overflow: hidden; }
+  .scoreboard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #009B77 0%, #FFB81C 33%, var(--red) 66%, #006847 100%); }
+  .match-label { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+  .matchup { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 16px; }
+  .team { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .team-flag { font-size: 52px; line-height: 1; }
+  .team-code { font-family: 'Bebas Neue', sans-serif; font-size: 42px; letter-spacing: 0.05em; line-height: 1; }
+  .vs-block { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .vs { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--muted); letter-spacing: 0.1em; }
+  .dot-sep { width: 6px; height: 6px; background: var(--red); border-radius: 50%; }
+  .match-meta { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; }
+  .event-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.15em; color: var(--gold); margin-top: 20px; }
+  .taco-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 8px 16px; margin-top: 12px; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+  .taco-badge span { font-size: 16px; }
+
+  .form-wrap { max-width: 520px; margin: 40px auto 0; padding: 0 20px; }
+  .form-intro { font-size: 13px; line-height: 1.7; color: var(--muted); margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+
+  .field { margin-bottom: 24px; }
+  label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  input[type="text"] { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.15s; }
+  input[type="text"]:focus { border-color: var(--gold); }
+  input::placeholder { color: var(--muted); opacity: 0.7; }
+
+  .submit-btn { width: 100%; background: var(--red); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.12em; border: none; border-radius: 8px; padding: 18px; cursor: pointer; transition: background 0.15s, transform 0.1s; margin-top: 8px; }
+  .submit-btn:hover { background: #d13520; }
+  .submit-btn:active { transform: scale(0.99); }
+
+  .success-screen { display: none; text-align: center; padding: 60px 20px; }
+  .success-screen.show { display: block; }
+  .success-icon { font-size: 64px; margin-bottom: 24px; }
+  .success-screen h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 12px; }
+  .success-screen p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .success-name { color: var(--text); font-weight: 600; }
+  .req { color: var(--red); margin-left: 2px; }
+
+  @media (max-width: 400px) { .team-code { font-size: 32px; } .team-flag { font-size: 40px; } }
+</style>
+</head>
+<body>
+
+<div class="scoreboard">
+  <div class="match-label">FIFA World Cup 2026 · Group Stage</div>
+  <div class="matchup">
+    <div class="team">
+      <div class="team-flag">🇿🇦</div>
+      <div class="team-code">SA</div>
+    </div>
+    <div class="vs-block">
+      <div class="vs">vs</div>
+      <div class="dot-sep"></div>
+    </div>
+    <div class="team">
+      <div class="team-flag">🇲🇽</div>
+      <div class="team-code">MEX</div>
+    </div>
+  </div>
+  <div class="event-title">Watch Party — RSVP</div>
+  <div class="taco-badge"><span>🌮</span> South African · Mexican Taco Bar</div>
+</div>
+
+<div class="form-wrap" id="formSection">
+  <p class="form-intro">
+    Grab your spot for the first match night. We're doing a full taco bar with a South African–Mexican twist — fill this in so we know who's coming and what to load up on.
+  </p>
+  <div class="field">
+    <label for="name">Your name <span class="req">*</span></label>
+    <input type="text" id="name" placeholder="First name is fine">
+  </div>
+  <div class="field">
+    <label for="bringing">What are you bringing? <span class="req">*</span></label>
+    <input type="text" id="bringing" placeholder="e.g. drinks, dessert, chips and dip...">
+  </div>
+  <button class="submit-btn" onclick="handleSubmit()">COUNT ME IN</button>
+</div>
+
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">🌮</div>
+  <h2>You're on the list</h2>
+  <p>See you there, <span class="success-name" id="successName"></span>.<br>Match night is going to be a good one.</p>
+</div>
+
+<script>
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw1TGjUTyuP4VwC4Pnfcpn85l_7pJaEliFkwIxZCQehQ9XiZuaDQr3eVPK09hFZJe_ODQ/exec';
+
+  function handleSubmit() {
+    const name = document.getElementById('name').value.trim();
+    const bringing = document.getElementById('bringing').value.trim();
+
+    if (!name) {
+      document.getElementById('name').focus();
+      document.getElementById('name').style.borderColor = '#E8412A';
+      return;
+    }
+    if (!bringing) {
+      document.getElementById('bringing').focus();
+      document.getElementById('bringing').style.borderColor = '#E8412A';
+      return;
+    }
+
+    // Send as form-encoded so Apps Script receives it reliably
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('bringing', bringing);
+
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    });
+
+    document.getElementById('successName').textContent = name.split(' ')[0];
+    document.getElementById('formSection').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
